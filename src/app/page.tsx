@@ -15,9 +15,7 @@ const MainWrapper = styled.section`
 export default function Home() {
   return (
     <MainWrapper>
-      <Button primary bgColor="violet">
-        Primary Button
-      </Button>
+      <Button primary>Primary Button</Button>
       <Button>Regular Button</Button>
     </MainWrapper>
   );

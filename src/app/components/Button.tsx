@@ -2,38 +2,33 @@ import * as React from "react";
 import styled, { css } from "styled-components";
 
 interface ButtonProps {
-  children: React.ReactElement | string;
+  children: React.ReactNode;
   primary?: boolean;
-  bgColor?: string;
 }
 
 interface StyledButtonProps {
-  $primary?: boolean;
-  $bgColor?: string;
+  $primary: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
-  padding: 1rem 1.5rem;
-  font-size: 1.8rem;
-  color: #fff;
-  outline: none;
-  border: none;
-  background-color: #333;
-  margin-bottom: 1rem;
-  ${({ $primary, $bgColor }) =>
+  background-color: white;
+  color: palevioletred;
+  font-size: 1.2rem;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid palevioletred;
+  border-radius: 3px;
+  ${({ $primary }) =>
     $primary &&
     css`
-      color: red;
-      background-color: ${$bgColor};
+      background-color: palevioletred;
+      color: white;
+      box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
     `}
 `;
 
-function Button({ primary, bgColor, children }: ButtonProps) {
-  return (
-    <StyledButton $primary={primary} $bgColor={bgColor}>
-      {children}
-    </StyledButton>
-  );
+function Button({ primary = false, children }: ButtonProps) {
+  return <StyledButton $primary={primary}>{children}</StyledButton>;
 }
 
 export default Button;
