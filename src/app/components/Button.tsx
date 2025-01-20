@@ -1,25 +1,24 @@
 import * as React from "react";
+
+import { Wrapper } from "./styled";
 import styled, { css } from "styled-components";
 
 interface ButtonProps {
   children: React.ReactNode;
-  primary?: boolean;
+  $primary?: boolean;
+  $margin?: string;
 }
 
-interface StyledButtonProps {
-  $primary: boolean;
-}
-
-const StyledButton = styled.button<StyledButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
   background-color: white;
   color: palevioletred;
   font-size: 1.2rem;
-  margin: 0.5rem 1rem;
+  margin: ${(props) => props.$margin || "2rem"};
   padding: 0.5rem 1rem;
   border: 1px solid palevioletred;
   border-radius: 3px;
-  ${({ $primary }) =>
-    $primary &&
+  ${(props) =>
+    props.$primary &&
     css`
       background-color: palevioletred;
       color: white;
@@ -27,8 +26,20 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
 `;
 
-function Button({ primary = false, children }: ButtonProps) {
-  return <StyledButton $primary={primary}>{children}</StyledButton>;
+const SuperButton = styled(StyledButton)`
+  font-size: 2.5rem;
+`;
+
+function Button({ $primary = false, $margin, children }: ButtonProps) {
+  console.log($margin);
+  return (
+    <Wrapper>
+      <StyledButton $primary={$primary} $margin={$margin}>
+        {children}
+      </StyledButton>
+    </Wrapper>
+  );
+  //   return <SuperButton $primary={$primary}>{children}</SuperButton>;
 }
 
 export default Button;

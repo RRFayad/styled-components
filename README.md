@@ -10,11 +10,7 @@ import styled, { css } from "styled-components";
 
 interface ButtonProps {
   children: React.ReactNode;
-  primary?: boolean;
-}
-
-interface StyledButtonProps {
-  $primary: boolean;
+  $primary?: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -34,8 +30,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
 `;
 
-function Button({ primary = false, children }: ButtonProps) {
-  return <StyledButton $primary={primary}>{children}</StyledButton>;
+function Button({ $primary = false, children }: ButtonProps) {
+  return <StyledButton $primary={$primary}>{children}</StyledButton>;
 }
 
 export default Button;
@@ -45,3 +41,12 @@ Obs.:
 
 - use $ when naming styled component props (to avoid class name DOM error);
 - use the `css`to dynamically define status;
+- Always define the styled component out of the component (it would cost performance)
+
+#### Extending a Styled Component
+
+```
+const SuperButton = styled(StyledButton)`
+  font-size: 2.5rem;
+`;
+```

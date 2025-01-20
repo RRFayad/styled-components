@@ -15,7 +15,9 @@ const MainWrapper = styled.section`
 export default function Home() {
   return (
     <MainWrapper>
-      <Button primary>Primary Button</Button>
+      <Button $primary $margin="20rem">
+        Primary Button
+      </Button>
       <Button>Regular Button</Button>
     </MainWrapper>
   );
